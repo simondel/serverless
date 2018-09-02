@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISKS AWS", "ISKS AWS\ISKS AWS.csproj", "{F8B9EFE0-DF53-406A-A5E2-2C9A4A7B8E5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISKS AWS.Tests", "ISKS AWS.Tests\ISKS AWS.Tests.csproj", "{387E23AA-460F-41B7-A6E3-C1C943D58A27}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8B9EFE0-DF53-406A-A5E2-2C9A4A7B8E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B9EFE0-DF53-406A-A5E2-2C9A4A7B8E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B9EFE0-DF53-406A-A5E2-2C9A4A7B8E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B9EFE0-DF53-406A-A5E2-2C9A4A7B8E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{387E23AA-460F-41B7-A6E3-C1C943D58A27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387E23AA-460F-41B7-A6E3-C1C943D58A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387E23AA-460F-41B7-A6E3-C1C943D58A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387E23AA-460F-41B7-A6E3-C1C943D58A27}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BA625DC-F314-4C05-AC3D-2870CD357A8E}
+	EndGlobalSection
+EndGlobal
