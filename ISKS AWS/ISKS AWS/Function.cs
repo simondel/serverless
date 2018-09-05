@@ -1,9 +1,9 @@
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -19,17 +19,13 @@ namespace ISKS.AWS
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest apigProxyEvent)
+        public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            Console.WriteLine($"Processing request data for request {apigProxyEvent.RequestContext.RequestId}.");
-            Console.WriteLine($"Body size = {apigProxyEvent.Body.Length}.");
-            var headerNames = string.Join(", ", apigProxyEvent.Headers.Keys);
-            Console.WriteLine($"Specified headers = {headerNames}.");
-
-            return new APIGatewayProxyResponse
+            //context.Logger.LogLine("This is useful for debugging!"); 
+            return new APIGatewayProxyResponse()
             {
-                Body = apigProxyEvent.Body,
-                StatusCode = 200,
+                StatusCode = (int)HttpStatusCode.OK,
+                Body = "Go Serverless v1.0! Your function executed successfully!",
             };
         }
 
