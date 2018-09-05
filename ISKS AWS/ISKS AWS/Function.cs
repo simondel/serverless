@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -19,9 +15,14 @@ namespace ISKS.AWS
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public string FunctionHandler(string input, ILambdaContext context)
+        public string FunctionHandler(APIGatewayProxyRequest input, ILambdaContext context)
         {
-            return input?.ToUpper();
+            if(input.HttpMethod == "GET")
+            {
+                input.QueryStringParameters.TryGetValue("name", out var name);
+                return $"Hello {name}!";
+            }
+            return "Please use HTTP get and a name query string parameter";
         }
     }
 }
