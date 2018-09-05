@@ -21,10 +21,6 @@ namespace ISKS.AWS
         /// <returns></returns>
         public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            //if (request.HttpMethod == "GET" && request.QueryStringParameters != null && request.QueryStringParameters.Any(kv => kv.Key == "name"))
-            //{
-            //    context.Logger.LogLine("Found name");
-            //}
             //context.Logger.LogLine("This is useful for debugging!"); 
             return new APIGatewayProxyResponse()
             {
