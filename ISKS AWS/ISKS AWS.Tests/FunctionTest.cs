@@ -20,7 +20,7 @@ namespace ISKS.AWS.Tests
             };
             var result = function.FunctionHandler(new APIGatewayProxyRequest { HttpMethod = "GET", QueryStringParameters = queryParams }, context);
 
-            Assert.Equal("Hello TestUser!", result.Body);
+            Assert.Equal("{\"Message\":\"Hello TestUser!\"}", result.Body);
         }
     }
 }
