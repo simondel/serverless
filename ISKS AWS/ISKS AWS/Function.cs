@@ -15,14 +15,20 @@ namespace ISKS.AWS
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public string FunctionHandler(APIGatewayProxyRequest input, ILambdaContext context)
+        public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest input, ILambdaContext context)
         {
-            if(input.HttpMethod == "GET")
+            var response = new APIGatewayProxyResponse
+            {
+                Body = "Please use HTTP get and a name query string parameter",
+                StatusCode = 200,
+            };
+
+            if (input.HttpMethod == "GET")
             {
                 input.QueryStringParameters.TryGetValue("name", out var name);
-                return $"Hello {name}!";
+                response.Body = $"Hello {name}!";
             }
-            return "Please use HTTP get and a name query string parameter";
+            return response;
         }
     }
 }
