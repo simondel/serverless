@@ -1,6 +1,7 @@
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using Newtonsoft.Json;
+using System.Linq;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -26,7 +27,7 @@ namespace ISKS.AWS
                 StatusCode = 200
             };
 
-            if (input.HttpMethod == "GET" && input.QueryStringParameters != null && input.QueryStringParameters.Count > 0)
+            if (input.HttpMethod == "GET" && input.QueryStringParameters != null && input.QueryStringParameters.Any(kv => kv.Key == "name"))
             {
                 input.QueryStringParameters.TryGetValue("name", out var name);
                 response.Body = JsonConvert.SerializeObject(new ResponseMessage($"Hello {name}!"));
