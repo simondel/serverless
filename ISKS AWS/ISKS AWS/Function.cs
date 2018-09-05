@@ -20,11 +20,13 @@ namespace ISKS.AWS
         {
             var response = new APIGatewayProxyResponse
             {
+                IsBase64Encoded = false,
+                Headers = input.Headers,
                 Body = JsonConvert.SerializeObject(new ResponseMessage("Please set the query string 'name'")),
                 StatusCode = 200
             };
 
-            if (input.HttpMethod == "GET")
+            if (input.HttpMethod == "GET" && input.QueryStringParameters != null && input.QueryStringParameters.Count > 0)
             {
                 input.QueryStringParameters.TryGetValue("name", out var name);
                 response.Body = JsonConvert.SerializeObject(new ResponseMessage($"Hello {name}!"));
