@@ -1,6 +1,7 @@
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,22 +19,18 @@ namespace ISKS.AWS
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest input, ILambdaContext context)
+        public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest apigProxyEvent)
         {
-            var response = new APIGatewayProxyResponse
-            {
-                IsBase64Encoded = false,
-                Headers = new Dictionary<string, string> { { "Content-Type", "text/html" } },
-                Body = "Please set the query string 'name'",
-                StatusCode = 200
-            };
+            Console.WriteLine($"Processing request data for request {apigProxyEvent.RequestContext.RequestId}.");
+            Console.WriteLine($"Body size = {apigProxyEvent.Body.Length}.");
+            var headerNames = string.Join(", ", apigProxyEvent.Headers.Keys);
+            Console.WriteLine($"Specified headers = {headerNames}.");
 
-            if (input.HttpMethod == "GET" && input.QueryStringParameters != null && input.QueryStringParameters.Any(kv => kv.Key == "name"))
+            return new APIGatewayProxyResponse
             {
-                input.QueryStringParameters.TryGetValue("name", out var name);
-                response.Body = $"Hello {name}!";
-            }
-            return response;
+                Body = apigProxyEvent.Body,
+                StatusCode = 200,
+            };
         }
 
         class ResponseMessage
