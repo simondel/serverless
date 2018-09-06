@@ -1,8 +1,5 @@
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -27,16 +24,6 @@ namespace ISKS.AWS
                 StatusCode = (int)HttpStatusCode.OK,
                 Body = "Go Serverless v1.0! Your function executed successfully!",
             };
-        }
-
-        class ResponseMessage
-        {
-            public string Message { get; set; }
-
-            public ResponseMessage(string message)
-            {
-                Message = message;
-            }
         }
     }
 }
