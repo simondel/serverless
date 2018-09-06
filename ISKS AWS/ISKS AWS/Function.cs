@@ -1,5 +1,8 @@
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -18,12 +21,18 @@ namespace ISKS.AWS
         /// <returns></returns>
         public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            //context.Logger.LogLine("This is useful for debugging!"); 
-            return new APIGatewayProxyResponse()
+            var response = new APIGatewayProxyResponse()
             {
                 StatusCode = (int)HttpStatusCode.OK,
-                Body = "Go Serverless v1.0! Your function executed successfully!",
+                Body = "Please set query param 'name'!",
             };
+            
+            if (request.HttpMethod == "GET" && request.QueryStringParameters != null && request.QueryStringParameters.Any(kv => kv.Key == "name"))
+            {
+                response.Body = $"Hello {request.QueryStringParameters.Single(kv => kv.Key == "name").Value}!";
+            }
+
+            return response;
         }
     }
 }
