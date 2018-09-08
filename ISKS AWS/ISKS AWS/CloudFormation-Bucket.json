@@ -1,0 +1,10 @@
+{
+  "Resources": {
+    "StorageBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName":  "storage-bucket-isks-simon"
+      }
+    }
+  }
+}

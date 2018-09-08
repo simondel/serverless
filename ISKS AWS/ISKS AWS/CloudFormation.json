@@ -18,10 +18,6 @@
         "PathPart": "isks"
       }
     },
-    "StorageBucket": {
-      "Type": "AWS::S3::Bucket",
-      "Properties": { }
-    },
     "LambdaExecutionRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -44,8 +40,8 @@
       "Properties": {
         "Handler": "ISKS.AWS::ISKS.AWS.Function::FunctionHandler",
         "Code": {
-          "S3Bucket": { "Ref": "StorageBucket" },
-          "S3Key": "functionapp.zip"
+          "S3Bucket": "storage-bucket-isks-simon",
+          "S3Key": "ISKS AWS.zip"
         },
         "Role": { "Fn::GetAtt": [ "LambdaExecutionRole", "Arn" ] },
         "Runtime": "dotnetcore2.1",
