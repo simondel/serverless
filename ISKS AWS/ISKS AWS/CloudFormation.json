@@ -17,6 +17,18 @@
         "ParentId": { "Fn::GetAtt": [ "RestApi", "RootResourceId" ] },
         "PathPart": "isks"
       }
+    },
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "ISKS.AWS::ISKS.AWS.Function::FunctionHandler",
+        "Code": {
+          "ZipFile": "."
+        },
+        "Role": { "Fn::GetAtt": [ "LambdaExecutionRole", "Arn" ] },
+        "Runtime": "dotnetcore2.1",
+        "Timeout": 30
+      }
     }
   }
 }
