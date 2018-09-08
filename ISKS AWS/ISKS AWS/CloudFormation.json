@@ -9,6 +9,14 @@
         },
         "Name": "ISKS RestApi"
       }
+    },
+    "RestApiResource": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "RestApiId": { "Ref": "RestApi" },
+        "ParentId": { "Fn::GetAtt": [ "RestApi", "RootResourceId" ] },
+        "PathPart": "isks"
+      }
     }
   }
 }
