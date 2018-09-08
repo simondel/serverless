@@ -61,6 +61,15 @@
           "Uri": { "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaFunction.Arn}/invocations" }
         }
       }
+    },
+    "LambdaExecutionPolicy": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": { "Fn::GetAtt": [ "LambdaFunction", "Arn" ] },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": { "Fn: :Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${RestApi.Arn}/*/POST/" }
+      }
     }
   }
 }
