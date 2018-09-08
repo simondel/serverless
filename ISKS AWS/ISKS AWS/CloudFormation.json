@@ -1,0 +1,14 @@
+{
+  "Resources": {
+    "RestApi": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Description": "Created by CloudFormation",
+        "EndpointConfiguration": {
+          "Types": [ "REGIONAL" ]
+        },
+        "Name": "ISKS RestApi"
+      }
+    }
+  }
+}
