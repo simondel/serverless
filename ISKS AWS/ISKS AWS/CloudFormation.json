@@ -18,16 +18,22 @@
         "PathPart": "isks"
       }
     },
+    "StorageBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": { }
+    },
     "LambdaExecutionRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
-         "AssumeRolePolicyDocument": {
+        "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
-          "Statement": [{
-            "Effect": "Allow",
-            "Principal": { "Service": ["lambda.amazonaws.com"] },
-            "Action": [ "sts:AssumeRole" ]
-          }]
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": { "Service": [ "lambda.amazonaws.com" ] },
+              "Action": [ "sts:AssumeRole" ]
+            }
+          ]
         },
         "ManagedPolicyArns": [ "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole" ],
         "RoleName": "Lambda-Role"
@@ -38,8 +44,8 @@
       "Properties": {
         "Handler": "ISKS.AWS::ISKS.AWS.Function::FunctionHandler",
         "Code": {
-          "S3Bucket": "lambda-functions",
-          "S3Key": "amilookup.zip"
+          "S3Bucket": { "Ref": "StorageBucket" },
+          "S3Key": "functionapp.zip"
         },
         "Role": { "Fn::GetAtt": [ "LambdaExecutionRole", "Arn" ] },
         "Runtime": "dotnetcore2.1",
