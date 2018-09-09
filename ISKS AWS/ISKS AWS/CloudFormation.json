@@ -70,6 +70,15 @@
         "Principal": "apigateway.amazonaws.com",
         "SourceArn": { "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${RestApi}/*/*/isks" }
       }
+    },
+    "ApiDeployment": {
+      {
+        "Type": "AWS::ApiGateway::Deployment",
+        "Properties": {
+          "RestApiId": { "Ref": "RestApi" },
+          "StageName": "TestStage"
+        }
+      }
     }
   }
 }
