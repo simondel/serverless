@@ -25,7 +25,8 @@
         },
         {
             "name": "isksFunction",
-            "type": "Microsoft.Web/sites/functions",
+            "type": "Microsoft.Web/sites",
+            "kind": "functionapp",
             "apiVersion": "2016-08-01",
             "properties": {
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
