@@ -28,6 +28,7 @@
             "type": "Microsoft.Web/sites",
             "kind": "functionapp",
             "apiVersion": "2016-08-01",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
             }
