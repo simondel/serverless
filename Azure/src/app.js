@@ -6,8 +6,8 @@ module.exports = function(context, trigger, input) {
         }
     };
 
-    if (req.query.name || (req.body && req.body.name)) {
-        context.res.body = "Hello " + (req.query.name || req.body.name);
+    if (trigger.query.name || (trigger.body && trigger.body.name)) {
+        context.res.body = "Hello " + (trigger.query.name || trigger.body.name);
     }
     else {
         context.res.status = 400;
