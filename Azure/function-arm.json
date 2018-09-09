@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "hostingPlanName": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "name": "[parameters('hostingPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2016-09-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "name": "[parameters('hostingPlanName')]"
+            },
+            "sku": {
+                "name": "B1",
+                "tier": "Basic",
+                "size": "B1",
+                "family": "B",
+                "capacity": 1
+            }
+        },
+        {
+            "name": "isksFunction",
+            "type": "Microsoft.Web/sites/functions",
+            "apiVersion": "2016-08-01",
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
+            }
+        }
+    ]
+}
