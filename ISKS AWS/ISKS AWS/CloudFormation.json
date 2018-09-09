@@ -76,7 +76,8 @@
       "Properties": {
         "RestApiId": { "Ref": "RestApi" },
         "StageName": "TestStage"
-      }
+      },
+      "DependsOn": "RestApiMethod"
     }
   }
 }
