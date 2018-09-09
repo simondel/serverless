@@ -72,12 +72,10 @@
       }
     },
     "ApiDeployment": {
-      {
-        "Type": "AWS::ApiGateway::Deployment",
-        "Properties": {
-          "RestApiId": { "Ref": "RestApi" },
-          "StageName": "TestStage"
-        }
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": { "Ref": "RestApi" },
+        "StageName": "TestStage"
       }
     }
   }
