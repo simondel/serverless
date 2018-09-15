@@ -1,4 +1,4 @@
-module.exports = function(context, trigger, input) {
+module.exports = function(context, trigger) {
     context.log('JavaScript HTTP trigger function processed a request.');
     context.res = {
         headers: {
@@ -6,8 +6,9 @@ module.exports = function(context, trigger, input) {
         }
     };
 
-    if (trigger.query.name || (trigger.body && trigger.body.name)) {
-        context.res.body = "Hello " + (trigger.query.name || trigger.body.name);
+    if (trigger.query.name) {
+        context.res.status = 200;
+        context.res.body = `Hello ${trigger.query.name}!`;
     }
     else {
         context.res.status = 400;
