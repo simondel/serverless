@@ -1,4 +1,4 @@
-# serverless
+# Serverless applications
 Demo repository for a serverless application on AWS and on Azure.
 
 The Azure function app is built usinig NodeJS.
