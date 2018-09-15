@@ -1,0 +1,42 @@
+pool:
+  vmImage: 'VS2017-Win2016'
+
+steps:
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    workingDir: Azure
+    verbose: false
+
+- task: Npm@1
+  displayName: 'npm pack'
+  inputs:
+    command: custom
+    workingDir: Azure
+    verbose: false
+    customCommand: 'run pack'
+
+- task: CopyFiles@2
+  displayName: 'Copy function files to Build.BinariesDirectory'
+  inputs:
+    SourceFolder: Azure
+    Contents: |
+     **/*.json
+     .funcpack/**/*
+    TargetFolder: '$(Build.BinariesDirectory)'
+
+- task: ArchiveFiles@2
+  displayName: 'Zip Build.BinariesDirector'
+  inputs:
+    includeRootFolder: false
+    archiveFile: '$(Build.ArtifactStagingDirectory)/functionapp.zip'
+
+- task: CopyFiles@2
+  displayName: 'Copy ARM template'
+  inputs:
+    SourceFolder: Azure
+    Contents: 'function-arm*.json'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
