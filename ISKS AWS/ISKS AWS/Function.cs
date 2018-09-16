@@ -30,7 +30,7 @@ namespace ISKS.AWS
             if (request.HttpMethod == "GET" && request.QueryStringParameters != null && request.QueryStringParameters.Any(kv => kv.Key == "name"))
             {
                 response.Body = $"Hello {request.QueryStringParameters.Single(kv => kv.Key == "name").Value}!";
-                response.StatusCode = (int)HttpStatusCode.OK,
+                response.StatusCode = (int)HttpStatusCode.OK;
             }
 
             return response;
