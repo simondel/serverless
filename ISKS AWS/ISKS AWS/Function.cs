@@ -23,13 +23,14 @@ namespace ISKS.AWS
         {
             var response = new APIGatewayProxyResponse()
             {
-                StatusCode = (int)HttpStatusCode.OK,
+                StatusCode = (int)HttpStatusCode.BadRequest,
                 Body = "Please set query param 'name'!",
             };
             
             if (request.HttpMethod == "GET" && request.QueryStringParameters != null && request.QueryStringParameters.Any(kv => kv.Key == "name"))
             {
                 response.Body = $"Hello {request.QueryStringParameters.Single(kv => kv.Key == "name").Value}!";
+                response.StatusCode = (int)HttpStatusCode.OK,
             }
 
             return response;
