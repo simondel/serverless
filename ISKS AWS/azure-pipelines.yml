@@ -1,0 +1,57 @@
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: '**/*[Tt]ests/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Package
+  inputs:
+    command: custom
+    custom: lambda
+    arguments: package
+    workingDirectory: 'ISKS AWS/ISKS AWS'
+
+- task: CopyFiles@2
+  displayName: 'Copy package'
+  inputs:
+    SourceFolder: 'ISKS AWS/ISKS AWS/bin/$(BuildConfiguration)/netcoreapp2.1'
+    Contents: '*.zip'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    OverWrite: true
+
+- task: CopyFiles@2
+  displayName: 'Copy CloudFormation templates'
+  inputs:
+    SourceFolder: 'ISKS AWS/ISKS AWS/'
+    Contents: |
+     CloudFormation.json
+     CloudFormation-Bucket.json
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
