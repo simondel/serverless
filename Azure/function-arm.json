@@ -53,7 +53,7 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageName'))]",
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('appserviceplanName'))]"
+                "[resourceId('Microsoft.Web/serverfarms', parameters('appserviceplanName'))]"
             ]
         },
         {
