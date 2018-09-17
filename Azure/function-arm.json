@@ -82,6 +82,6 @@
             "properties": {
                 "name": "[parameters('appserviceplanName')]"
             }
-        },
+        }
     ]
 }
