@@ -7,6 +7,9 @@
         },
         "storageName": {
             "value": "isksfunctionstorage"
+        },
+        "appserviceplanName": {
+            "value": "isksfunctionasp"
         }
     }
 }
