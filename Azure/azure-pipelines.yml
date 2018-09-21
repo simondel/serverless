@@ -2,19 +2,12 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 steps:
-- task: Npm@1
-  displayName: 'npm install'
-  inputs:
-    workingDir: Azure
-    verbose: false
-
-- task: Npm@1
-  displayName: 'npm pack'
-  inputs:
-    command: custom
-    workingDir: Azure
-    verbose: false
-    customCommand: 'run pack'
+- script: |
+   npm install
+   npm test
+   npm run pack 
+  workingDirectory: Azure
+  displayName: 'Install, test and package app'
 
 - task: CopyFiles@2
   displayName: 'Copy function files to Build.BinariesDirectory'
