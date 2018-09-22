@@ -2,10 +2,7 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 steps:
-- script: |
-   npm install
-   npm test
-   npm run pack 
+- script: 'npm install && npm test && npm run pack' 
   workingDirectory: Azure
   displayName: 'Install, test and package app'
 
